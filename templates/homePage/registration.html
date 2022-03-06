@@ -2,20 +2,21 @@
 {% load static %}
 {% block body_block %}
   <div class="container">
+    {% if registered %}
+      <h1>Thank you for registering!</h1>
+    {% else %}
     <div class="jumbotron">
-      {% if registered %}
-        <h1>Thank you for registering!</h1>
-      {% else %}
-        <h1>Register Here</h1>
-        <h3>Just fill out the form.</h3>
-        <form enctype="multipart/form-data" method="POST">
-            {% csrf_token %} <!--cross-site request forgery-->
-            {{ user_form.as_p }} <!--as_p Render Django form as paragraph-->
-            {{ profile_form.as_p }} 
-            <input type="submit" name="" value="Register">
-        </form>
-        
-      {% endif %}
+      <h1 style="text-align:center; text-decoration:underline;">Register Here!</h1>
     </div>
+    <div class="jumbotron">
+      <div class="form-group">
+        <form enctype="multipart/form-data" method="POST">
+          {% csrf_token %} <!--cross-site request forgery-->
+          {{ user_form.as_p }} <!--as_p Render Django form as paragraph-->
+          {{ profile_form.as_p }} 
+          <input type="submit" name="" value="Register">
+        </form>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}

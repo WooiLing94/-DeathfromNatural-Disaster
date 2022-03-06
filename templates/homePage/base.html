@@ -8,30 +8,97 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
   <style>
-    .center{
+    .container{
+      background-color: black;
+      color: #c9e9f6;
       margin: auto;
-
+      padding: 3px 5px 22px 10px;
+    }
+    .center{
+      border: 1px solid #c9e9f6;
+      width: 70%;
+      padding: 3px 5px 0 25px;
+      text-align: left;
+      color: #c9e9f6;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .left{
+      border: 1px solid #c9e9f6;
+      width: 10%;
+      padding: 8px 5px 0 10px;
+      text-align: center;
+      color: #c9e9f6;
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .a{
+      color: #c9e9f6;
+    }
+    .form-group{
+      width: 80%;
+      color: black;
+      font-weight: bold;
+      padding: 8px 25px 25px 50px;
+      font-size: 20px;
+    }
+    .jumbotron{
+      position: relative;
+      color: black;
+      left: 120px;
+      top: 10px;
+      background-color:#c9e9f6;
+      width: 80%;
+      text-align: left;
+      padding: 10px 10px 10px 50px;
+    }
+    .img{
+      position: relative;
+      left: 40px;
+      border: 1px solid #c9e9f6;
+      width: 45.2%;
+      
+    }
+    .homePage{
+      position: relative;
+      background-color:#c9e9f6;
+      color: black;
+      left: 560px;
+      top: -336px;
+      border: 1px solid #c9e9f6;
+      width: 45%;
+      padding: 00px 5px 0 10px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 20px;
     }
   </style>
   </head>
-<body>
+<body style="background-color:#c9e9f6;">
   <div class="container">
     <div class="row" >
-      <div class="col-sm">
+      <div class="center">
         <!-- allowed to use django in HTML (Jinja template)--> 
         {# Django Home Link / Admin Link / Register Link#}
         <a class="navbar-brand" href="{% url 'index' %}">HOME</a>
       </div>
-      <div class="col-sm">
-        {# Some logic on what to display for last item#}
+      <div class="left">
         {% if user.is_authenticated %}
-        Hi, {{ user.username }}
+        {# Some logic on what to display for last item#}
+        <a class="navbar-link" href="{% url 'homePage:dashboard' %}" style="text-align:right;">Dashboard</a> 
       </div>
-      <div class="col-sm">
+      <div class="left">
+        Hello, {{ user.username }}
+      </div>
+      <div class="left">
         <a href="{% url 'logout' %}">LOGOUT</a>
         {% else %}
-        <a class="navbar-link" href="{% url 'homePage:register' %}" style="text-align:right;">REGISTER</a> 
-        <a class="navbar-link" href="{% url 'homePage:user_login' %}" style="text-align:right;">LOGIN</a>
+      </div>
+      <div class="left">
+        <a class="navbar-link" href="{% url 'homePage:register' %}">REGISTER</a>
+      </div>
+      <div class="left">
+        <a class="navbar-link" href="{% url 'homePage:user_login' %}">LOGIN</a>
         {% endif %}
       </div>
     </div>

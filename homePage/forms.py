@@ -16,9 +16,9 @@ class UserForm(forms.ModelForm):
 class UserProfileInfoForm(forms.ModelForm):
     class Meta():
         model = UserProfileInfo
-        fields = ('occupation','company','hobby')
+        fields = ('occupation','company','location')
         widgets = {
             'occupation':forms.TextInput(attrs={'class':'form-control'}),
             'company':forms.TextInput(attrs={'class':'form-control'}),
-            'hobby':forms.TextInput(attrs={'class':'form-control'}),
+            'location':forms.TextInput(attrs={'class':'form-control'}),
         }
