@@ -12,6 +12,9 @@ from homePage.models import UserProfileInfo
 def index(request):
     return render(request,'homePage/index.html')
 
+def analysis(request):
+    return render(request,'homePage/combine.html')
+
 @login_required
 def special(request):
     all_users = UserProfileInfo.objects.select_related('user')

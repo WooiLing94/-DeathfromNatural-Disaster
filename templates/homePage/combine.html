@@ -1,0 +1,59 @@
+{% extends "homePage/base.html" %}
+{% block body_block %}
+<div style="text-align:center">
+  <h1>
+    Welcome to Natural Disaster Analysis!
+  </h1>
+    <div class="jumbotron">
+      <div class="btn">
+        <button class="button2" onclick="getFlood()" id="Flood">FLOOD</button>
+        <button class="button2" onclick="getWildfire()" id="Wildfire">WILDFIRE</button>
+        <button class="button2" onclick="getStorms()" id="Storms">STOMRS</button>
+        <button class="button2" onclick="getLandslides()" id="Landslides">LANDSLIDES</button>
+        <button class="button2" onclick="getEarthquakes()" id="Earthquakes">EARTHQUAKES</button>
+      </div>
+    </div>
+</div>
+<script>
+  function getFlood() {
+    fetch('{% url 'combine:get-floods' %}')
+    .then(res => res.blob())
+    .then(data => {
+      let imgURL = URL.createObjectURL(data)
+      document.getElementById('matplotlib').src = imgURL
+    })
+  }
+  function getWildfire() {
+    fetch('{% url 'combine:get-wildfire' %}')
+    .then(res => res.blob())
+    .then(data => {
+      let imgURL = URL.createObjectURL(data)
+      document.getElementById('matplotlib').src = imgURL
+    })
+  }
+  function getStorms() {
+    fetch('{% url 'combine:get-storms' %}')
+    .then(res => res.blob())
+    .then(data => {
+      let imgURL = URL.createObjectURL(data)
+      document.getElementById('matplotlib').src = imgURL
+    })
+  }
+  function getLandslides() {
+    fetch('{% url 'combine:get-landslides' %}')
+    .then(res => res.blob())
+    .then(data => {
+      let imgURL = URL.createObjectURL(data)
+      document.getElementById('matplotlib').src = imgURL
+    })
+  }
+  function getEarthquakes) {
+    fetch('{% url 'combine:get-earthquakes' %}')
+    .then(res => res.blob())
+    .then(data => {
+      let imgURL = URL.createObjectURL(data)
+      document.getElementById('matplotlib').src = imgURL
+    })
+  }
+</script>
+{% endblock %}
