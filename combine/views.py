@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from naturalDisaster.settings import MEDIA_URL,MEDIA_ROOT
@@ -8,85 +9,104 @@ from django.views.generic import TemplateView, View
 import pandas as pd
 import numpy as np
 import re
-from matplotlib import pyplot as plt
+import matplotlib as pl
+pl.use('Agg')
+import matplotlib.pyplot as plt
 import plotly
 import plotly.graph_objs as go
+import json
 
 class HomePageView(TemplateView):
     def get(self,request,**kwargs):
         return render(request, 'combine/index.html', context=None)
 
-df = pd.read_csv('naturalDisaster.csv')
-df.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
-df = df[df["Country"].str.contains("income")==False]
-
 class Api(TemplateView):
-    def getFloods(request):
+    def getFlood(request):
+        df = pd.read_csv('naturalDisaster.csv')
+        df.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
+        df = df[df["Country"].str.contains("income")==False]
         df['Flood'] = pd.to_numeric(df['Flood'],errors='coerce')
-        df_Flood = df.replace(np.nan, 0)
-        df_Flood= df[df['Flood'] > 150]
+        df = df.replace(np.nan, 0)
+        df = df[df['Flood']>300]
         x = df['Country']
         y = df['Flood']
         plt.bar(x,y)
+        plt.title('Number of Deaths from Floods')
         plt.xlabel('Country')
-        plt.ylabel('Flood')
+        plt.ylabel('Number of Deaths')
+        plt.xticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
-        plt.savefig(response, format="png")
-        # plt.savefig('media/floods.png',response, format="png")
-        return response
+        plt.savefig('media/Floods.png',format="png")
+        return HttpResponse('media/Floods.png')
 
-    def getWilfire(request):
-        df['Wilfire'] = pd.to_numeric(df['Wilfire'],errors='coerce')
-        df_Wilfire = df.replace(np.nan, 0)
-        df_Wilfire= df[df['Wilfire'] > 150]
-        x = df['Country']
-        y = df['Wilfire']
+    def getWildfire(request):
+        df_Wildfire = pd.read_csv('naturalDisaster.csv')
+        df_Wildfire.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
+        df_Wildfire = df_Wildfire[df_Wildfire["Country"].str.contains("income")==False]
+        df_Wildfire['Wildfire'] = pd.to_numeric(df_Wildfire['Wildfire'],errors='coerce')
+        df_Wildfire = df_Wildfire.replace(np.nan, 0)
+        df_Wildfire = df_Wildfire[df_Wildfire['Wildfire']>100]
+        x = df_Wildfire['Country']
+        y = df_Wildfire['Wildfire']
         plt.bar(x,y)
+        plt.title('Number of Deaths from Wildfire')
         plt.xlabel('Country')
-        plt.ylabel('Wilfire')
+        plt.ylabel('Number of Deaths')
+        plt.xticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
-        plt.savefig(response, format="png")
-        # plt.savefig('media/Wilfire.png',response, format="png")
-        return response
+        plt.savefig('media/Wildfire.png',format="png")
+        return HttpResponse('media/Wildfire.png')
     
     def getStorms(request):
-        df['Storms'] = pd.to_numeric(df['Storms'],errors='coerce')
-        df_Storms = df.replace(np.nan, 0)
-        df_Storms= df[df['Storms'] > 150]
-        x = df['Country']
-        y = df['Storms']
+        df_Storms = pd.read_csv('naturalDisaster.csv')
+        df_Storms.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
+        df_Storms = df_Storms[df_Storms["Country"].str.contains("income")==False]
+        df_Storms['Storms'] = pd.to_numeric(df_Storms['Storms'],errors='coerce')
+        df_Storms = df_Storms.replace(np.nan, 0)
+        df_Storms = df_Storms[df_Storms['Storms'] > 300]
+        x = df_Storms['Country']
+        y = df_Storms['Storms']
         plt.bar(x,y)
+        plt.title('Number of Deaths from Storms')
         plt.xlabel('Country')
-        plt.ylabel('Storms')
+        plt.ylabel('Number of Deaths')
+        plt.xticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
-        plt.savefig(response, format="png")
-        # plt.savefig('media/Storms.png',response, format="png")
-        return response
+        plt.savefig('media/Storms.png',format="png")
+        return HttpResponse('media/Storms.png')
     
     def getLandslides(request):
-        df['Landslides'] = pd.to_numeric(df['Landslides'],errors='coerce')
-        df_Landslides = df.replace(np.nan, 0)
-        df_Landslides= df[df['Landslides'] > 150]
-        x = df['Country']
-        y = df['Landslides']
+        df_Landslides = pd.read_csv('naturalDisaster.csv')
+        df_Landslides.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
+        df_Landslides = df_Landslides[df_Landslides["Country"].str.contains("income")==False]
+        df_Landslides['Landslides'] = pd.to_numeric(df_Landslides['Landslides'],errors='coerce')
+        df_Landslides = df_Landslides.replace(np.nan, 0)
+        df_Landslides = df_Landslides[df_Landslides['Landslides'] > 400]
+        x = df_Landslides['Country']
+        y = df_Landslides['Landslides']
         plt.bar(x,y)
+        plt.title('Number of Deaths from Landslides')
         plt.xlabel('Country')
-        plt.ylabel('Landslides')
+        plt.ylabel('Number of Deaths')
+        plt.xticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
-        plt.savefig(response, format="png")
-        # plt.savefig('media/Landslides.png',response, format="png")
-        return response
+        plt.savefig('media/Landslides.png',format="png")
+        return HttpResponse('media/Landslides.png')
     
     def getEarthquakes(request):
-        df['Earthquakes'] = pd.to_numeric(df['Earthquakes'],errors='coerce')
-        df_Earthquakes = df.replace(np.nan, 0)
-        df_Earthquakes= df[df['Earthquakes'] > 150]
-        x = df['Country']
-        y = df['Earthquakes']
-        plt.bar(x,y)
+        df_Earthquakes = pd.read_csv('naturalDisaster.csv')
+        df_Earthquakes.drop(['Extreme temperature','Mass movement (dry)','Volcanic activity','Drought'], axis = 1, inplace = True)
+        df_Earthquakes = df_Earthquakes[df_Earthquakes["Country"].str.contains("income")==False]
+        df_Earthquakes['Earthquakes'] = pd.to_numeric(df_Earthquakes['Earthquakes'],errors='coerce')
+        df_Earthquakes = df_Earthquakes.replace(np.nan, 0)
+        df_Earthquakes = df_Earthquakes[df_Earthquakes['Earthquakes'] > 400]
+        x = df_Earthquakes['Country']
+        y = df_Earthquakes['Earthquakes']
+        plt.bar(x,y, color = 'blue')
+        plt.title('Number of Deaths from Earthquakes')
         plt.xlabel('Country')
-        plt.ylabel('Earthquakes')
+        plt.ylabel('Number of Deaths')
+        plt.xticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
-        plt.savefig(response, format="png")
-        # plt.savefig('media/Earthquakes.png',response, format="png")
-        return response
+        plt.savefig('media/Earthquakes.png',format="png")
+        return HttpResponse('media/Earthquakes.png')

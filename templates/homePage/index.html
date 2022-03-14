@@ -39,46 +39,4 @@
     {% endif %}
     </div>
 </div>
-<script>
-  function getFlood() {
-    fetch('{% url 'combine:get-floods' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
-  }
-  function getWildfire() {
-    fetch('{% url 'combine:get-wildfire' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
-  }
-  function getStorms() {
-    fetch('{% url 'combine:get-storms' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
-  }
-  function getLandslides() {
-    fetch('{% url 'combine:get-landslides' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
-  }
-  function getEarthquakes) {
-    fetch('{% url 'combine:get-earthquakes' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
-  }
-</script>
 {% endblock %}

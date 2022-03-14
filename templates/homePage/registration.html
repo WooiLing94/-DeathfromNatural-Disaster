@@ -14,7 +14,7 @@
           {% csrf_token %} <!--cross-site request forgery-->
           {{ user_form.as_p }} <!--as_p Render Django form as paragraph-->
           {{ profile_form.as_p }} 
-          <input type="submit" name="" value="Register">
+          <input type="submit" class="register" name="" value="Register">
         </form>
       </div>
     {% endif %}

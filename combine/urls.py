@@ -7,9 +7,9 @@ from django.conf.urls.static import static
 app_name = 'combine'
 
 urlpatterns=[
-    re_path('',views.HomePageView.as_view(), name='home'),
-    re_path('getFloods/',views.Api.getFloods, name='get-floods'),
-    re_path('getFloods/',views.Api.getFloods, name='get-wildfire'),
+    # re_path('',views.HomePageView.as_view(), name='home'),
+    re_path('getFlood/',views.Api.getFlood, name='get-flood'),
+    re_path('getWildfire/',views.Api.getWildfire, name='get-wildfire'),
     re_path('getStorms/',views.Api.getStorms, name='get-storms'),
     re_path('getLandslides/',views.Api.getLandslides, name='get-landslides'),
     re_path('getEarthquakes/',views.Api.getEarthquakes, name='get-earthquakes')

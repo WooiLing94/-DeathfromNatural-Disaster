@@ -13,46 +13,49 @@
         <button class="button2" onclick="getEarthquakes()" id="Earthquakes">EARTHQUAKES</button>
       </div>
     </div>
-</div>
+    <div>
+      <img id="matplotlib"></img>
+    </div>
+  </div>
 <script>
   function getFlood() {
-    fetch('{% url 'combine:get-floods' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
+    fetch('{% url 'combine:get-flood' %}')
+    .then(response => response.text())
+    .then((response) => {
+       console.log(response)
+       document.getElementById('matplotlib').src = 'http://127.0.0.1:8000/' + response
     })
   }
   function getWildfire() {
     fetch('{% url 'combine:get-wildfire' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
-    })
+    .then(response => response.text())
+    .then((response) => {
+       console.log(response)
+       document.getElementById('matplotlib').src = 'http://127.0.0.1:8000/' + response
+   })
   }
   function getStorms() {
     fetch('{% url 'combine:get-storms' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
+    .then(response => response.text())
+    .then((response) => {
+       console.log(response)
+       document.getElementById('matplotlib').src = 'http://127.0.0.1:8000/' + response
     })
   }
   function getLandslides() {
     fetch('{% url 'combine:get-landslides' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
+    .then(response => response.text())
+    .then((response) => {
+       console.log(response)
+       document.getElementById('matplotlib').src = 'http://127.0.0.1:8000/' + response
     })
   }
-  function getEarthquakes) {
+  function getEarthquakes() {
     fetch('{% url 'combine:get-earthquakes' %}')
-    .then(res => res.blob())
-    .then(data => {
-      let imgURL = URL.createObjectURL(data)
-      document.getElementById('matplotlib').src = imgURL
+    .then(response => response.text())
+    .then((response) => {
+       console.log(response)
+       document.getElementById('matplotlib').src = 'http://127.0.0.1:8000/' + response
     })
   }
 </script>

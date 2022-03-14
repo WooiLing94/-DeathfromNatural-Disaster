@@ -10,7 +10,7 @@ class UserForm(forms.ModelForm):
         widgets = {
             'username':forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your username'}),
             'password':forms.PasswordInput(attrs={'class':'form-control'}),
-            'email':forms.TextInput(attrs={'class':'form-control'}),
+            'email':forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your email'}),
         }
 
 class UserProfileInfoForm(forms.ModelForm):
@@ -18,7 +18,7 @@ class UserProfileInfoForm(forms.ModelForm):
         model = UserProfileInfo
         fields = ('occupation','company','location')
         widgets = {
-            'occupation':forms.TextInput(attrs={'class':'form-control'}),
-            'company':forms.TextInput(attrs={'class':'form-control'}),
-            'location':forms.TextInput(attrs={'class':'form-control'}),
+            'occupation':forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your occupation'}),
+            'company':forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your company'}),
+            'location':forms.TextInput(attrs={'class':'form-control','placeholder': 'Enter your location'}),
         }
