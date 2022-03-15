@@ -30,11 +30,12 @@ class Api(TemplateView):
         df = df[df['Flood']>300]
         x = df['Country']
         y = df['Flood']
-        plt.bar(x,y)
+        plt.bar(x,y, color = '#c9e9f6')
         plt.title('Number of Deaths from Floods')
         plt.xlabel('Country')
         plt.ylabel('Number of Deaths')
         plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
         plt.savefig('media/Floods.png',format="png")
         return HttpResponse('media/Floods.png')
@@ -48,11 +49,12 @@ class Api(TemplateView):
         df_Wildfire = df_Wildfire[df_Wildfire['Wildfire']>100]
         x = df_Wildfire['Country']
         y = df_Wildfire['Wildfire']
-        plt.bar(x,y)
+        plt.bar(x,y, color = '#c9e9f6')
         plt.title('Number of Deaths from Wildfire')
         plt.xlabel('Country')
         plt.ylabel('Number of Deaths')
         plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
         plt.savefig('media/Wildfire.png',format="png")
         return HttpResponse('media/Wildfire.png')
@@ -66,11 +68,12 @@ class Api(TemplateView):
         df_Storms = df_Storms[df_Storms['Storms'] > 300]
         x = df_Storms['Country']
         y = df_Storms['Storms']
-        plt.bar(x,y)
+        plt.bar(x,y, color = '#c9e9f6')
         plt.title('Number of Deaths from Storms')
         plt.xlabel('Country')
         plt.ylabel('Number of Deaths')
         plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
         plt.savefig('media/Storms.png',format="png")
         return HttpResponse('media/Storms.png')
@@ -84,11 +87,12 @@ class Api(TemplateView):
         df_Landslides = df_Landslides[df_Landslides['Landslides'] > 400]
         x = df_Landslides['Country']
         y = df_Landslides['Landslides']
-        plt.bar(x,y)
+        plt.bar(x,y, color = '#c9e9f6')
         plt.title('Number of Deaths from Landslides')
         plt.xlabel('Country')
         plt.ylabel('Number of Deaths')
         plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
         plt.savefig('media/Landslides.png',format="png")
         return HttpResponse('media/Landslides.png')
@@ -102,11 +106,12 @@ class Api(TemplateView):
         df_Earthquakes = df_Earthquakes[df_Earthquakes['Earthquakes'] > 400]
         x = df_Earthquakes['Country']
         y = df_Earthquakes['Earthquakes']
-        plt.bar(x,y, color = 'blue')
+        plt.bar(x,y, color = '#c9e9f6')
         plt.title('Number of Deaths from Earthquakes')
         plt.xlabel('Country')
         plt.ylabel('Number of Deaths')
         plt.xticks(fontsize=8)
+        plt.yticks(fontsize=8)
         response = HttpResponse(content_type="image/jpeg")
         plt.savefig('media/Earthquakes.png',format="png")
         return HttpResponse('media/Earthquakes.png')
