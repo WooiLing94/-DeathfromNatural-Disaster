@@ -2,7 +2,7 @@
 
 # Project Team Member
 - Lee, Chiew Yeung <chiew_yeung_lee@dell.com> 
-- Chin, Wooi Ling <Wooi_ling_Chin@Dell.com>
+- Chin, Wooi Ling <wooi_ling_chin@Dell.com>
 
 
 # IDE\Base Env Details
